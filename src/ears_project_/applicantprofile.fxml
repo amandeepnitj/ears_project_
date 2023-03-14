@@ -44,7 +44,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="signup_btn" layoutX="131.0" layoutY="351.0" mnemonicParsing="false" text="Cancel" />
+            <Button fx:id="signup_btn" layoutX="131.0" layoutY="364.0" mnemonicParsing="false" text="Cancel" />
             <TextField fx:id="username_tf" layoutX="138.0" layoutY="85.0" />
             <TextField fx:id="password_tf" layoutX="138.0" layoutY="116.0" />
             <TextField fx:id="password_tf1" layoutX="138.0" layoutY="147.0" />
@@ -59,9 +59,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="211.0" text="Description" />
-            <TextArea layoutX="131.0" layoutY="211.0" prefHeight="120.0" prefWidth="250.0" />
-            <Button layoutX="245.0" layoutY="351.0" mnemonicParsing="false" text="Submit" />
+            <Label layoutX="55.0" layoutY="237.0" text="Description" />
+            <TextArea layoutX="131.0" layoutY="237.0" prefHeight="120.0" prefWidth="250.0" />
+            <Button layoutX="239.0" layoutY="364.0" mnemonicParsing="false" text="Submit" />
+            <Label layoutX="2.0" layoutY="207.0" text="Designated Department" />
+            <ComboBox layoutX="137.0" layoutY="203.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>
