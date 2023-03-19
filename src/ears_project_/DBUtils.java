@@ -4,6 +4,7 @@
  */
 package ears_project_;
 
+import ears_project_.DB.jdbcconnect;
 import java.sql.*;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -56,7 +57,7 @@ public class DBUtils {
         
     }
     
-    public static void signUpUser(ActionEvent event, String username,String password)
+    public static void signUpUser(ActionEvent event, String username,String password) throws ClassNotFoundException
     {
         Connection connection = null;
         PreparedStatement  userinsert = null;
@@ -64,13 +65,20 @@ public class DBUtils {
         ResultSet rs = null;
         System.out.println("the username and password typed are ");
         System.out.println(username +"    "+password);
+        boolean useralreadyexists=true;
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/EARS","root","Amandeep@17");
-            checkuserexists =connection.prepareStatement("Select * from users where username = ?");
-            checkuserexists.setString(1, username);
-            if(rs==null)
+            Connection conn = new jdbcconnect().init();
+            String query="select count(*) as count1 from ears.user where username= '"+username+"'";
+            Statement st1 = conn.createStatement();
+            ResultSet rs1 =st1.executeQuery(query);
+            
+            if(rs1.next())
             {
-                System.out.println("rs is NULL");
+                if(rs1.getInt("count1")>=1)
+                {
+                    useralreadyexists=false;
+                    System.out.println(" user already exists  "+useralreadyexists);
+                }
             }
             rs=checkuserexists.executeQuery();
             if(rs!=null && rs.isBeforeFirst())

@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lube%20IT/Documents/NetBeansProjects/ears_project_/src/ears_project_/Main.fxml</file>
-            <file>file:/C:/Users/Lube%20IT/Documents/NetBeansProjects/ears_project_/src/ears_project_/EARS_project_.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/SignUpController.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/DB/jdbcconnect.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/nbproject/jfx-impl.xml</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/sign-up.fxml</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/EARS_project_.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/DBUtils.java</file>
         </group>
     </open-files>
 </project-private>

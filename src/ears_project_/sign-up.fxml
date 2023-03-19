@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.SignUpController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.SignUpController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="207.0">
          <children>
@@ -66,19 +66,19 @@
             </Button>
             <TextField fx:id="username_tf" layoutX="138.0" layoutY="85.0" />
             <TextField fx:id="password_tf" layoutX="138.0" layoutY="116.0" />
-            <TextField fx:id="password_tf1" layoutX="138.0" layoutY="147.0" />
+            <TextField fx:id="contact_tf" layoutX="138.0" layoutY="147.0" />
             <Label layoutX="61.0" layoutY="150.0" text="Contact">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox layoutX="137.0" layoutY="175.0" prefWidth="150.0" />
+            <ComboBox fx:id="department_cb" layoutX="137.0" layoutY="175.0" onAction="#Select" prefWidth="150.0" />
             <Label layoutX="48.0" layoutY="178.0" text="Department">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox layoutX="137.0" layoutY="207.0" prefWidth="150.0" />
+            <ComboBox fx:id="designation_cb" layoutX="137.0" layoutY="207.0" prefWidth="150.0" />
             <Label layoutX="53.0" layoutY="211.0" text="Designation" />
          </children>
       </AnchorPane>
