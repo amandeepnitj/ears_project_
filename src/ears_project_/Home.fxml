@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+<TabPane fx:id="tabpane_tb" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.HomeController">
   <tabs>
-    <Tab text="Create Search">
+    <Tab fx:id="tab1" onSelectionChanged="#tabSelected_1" text="Create Search">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -26,20 +26,20 @@
                   <Label layoutX="110.0" layoutY="88.0" text="Committee Name" />
                   <Label layoutX="110.0" layoutY="120.0" text="Position" />
                   <Label layoutX="110.0" layoutY="147.0" text="ChairPerson" />
-                  <TextField layoutX="233.0" layoutY="84.0" />
-                  <ChoiceBox layoutX="233.0" layoutY="116.0" prefWidth="150.0" />
-                  <ChoiceBox layoutX="232.0" layoutY="152.0" prefWidth="150.0" />
+                  <TextField fx:id="committee_first_tf" layoutX="233.0" layoutY="84.0" />
                   <ScrollPane layoutX="230.0" layoutY="209.0" prefHeight="200.0" prefWidth="488.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="470.0" />
                     </content>
                   </ScrollPane>
-                  <Button layoutX="281.0" layoutY="458.0" mnemonicParsing="false" text="Submit" />
-                  <Button layoutX="459.0" layoutY="458.0" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="submit_first_btn" layoutX="281.0" layoutY="458.0" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="cancel_first_btn" layoutX="459.0" layoutY="458.0" mnemonicParsing="false" text="Cancel" />
+                  <ComboBox fx:id="designation_first_cb" layoutX="233.0" layoutY="116.0" prefWidth="150.0" />
+                  <ComboBox fx:id="chairperson_first_cb" layoutX="232.0" layoutY="143.0" prefWidth="150.0" />
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Validation of Applications">
+    <Tab fx:id="tab2" onSelectionChanged="#tabSelected_2" text="Validation of Applications">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -60,7 +60,7 @@
                               <TextField layoutX="122.0" layoutY="34.0" />
                               <TextField layoutX="389.0" layoutY="34.0" />
                               <TextField layoutX="122.0" layoutY="67.0" />
-                              <TextArea layoutX="122.0" layoutY="97.0" prefHeight="81.0" prefWidth="433.0" />
+                              <TextArea layoutX="126.0" layoutY="92.0" prefHeight="81.0" prefWidth="433.0" />
                               <RadioButton layoutX="122.0" layoutY="188.0" mnemonicParsing="false" text="good" textFill="WHITE" />
                               <RadioButton layoutX="184.0" layoutY="188.0" mnemonicParsing="false" text="Average" textFill="WHITE" />
                               <RadioButton layoutX="255.0" layoutY="188.0" mnemonicParsing="false" text="Bad" textFill="WHITE" />
@@ -74,7 +74,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Results">
+      <Tab fx:id="tab3" onSelectionChanged="#tabSelected_3" text="Results">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -107,7 +107,7 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="User Profile">
+      <Tab fx:id="tab4" onSelectionChanged="#tabSelected_4" text="User Profile">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -122,11 +122,6 @@
                      </font>
                   </Label>
                   <Label layoutX="67.0" layoutY="139.0" text="Contact :">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="67.0" layoutY="165.0" text="Email :">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -151,12 +146,9 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="163.0" layoutY="77.0" />
-                  <TextField layoutX="163.0" layoutY="105.0" />
-                  <TextField layoutX="163.0" layoutY="137.0" />
-                  <TextField layoutX="163.0" layoutY="163.0" />
-                  <ChoiceBox layoutX="163.0" layoutY="193.0" prefWidth="150.0" />
-                  <ChoiceBox layoutX="163.0" layoutY="223.0" prefWidth="150.0" />
+                  <TextField fx:id="username_four_tf" layoutX="163.0" layoutY="77.0" />
+                  <TextField fx:id="password_four_tf" layoutX="163.0" layoutY="105.0" />
+                  <TextField fx:id="contact_four_tf" layoutX="163.0" layoutY="137.0" />
                   <ScrollPane layoutX="163.0" layoutY="264.0" prefHeight="200.0" prefWidth="602.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="589.0" style="-fx-background-color: grey;">
@@ -196,7 +188,10 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <Button layoutX="163.0" layoutY="489.0" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="submit_four_btn" layoutX="163.0" layoutY="489.0" mnemonicParsing="false" text="Submit" />
+                  <Button fx:id="logout_four_btn" layoutX="505.0" layoutY="489.0" mnemonicParsing="false" text="Logout" />
+                  <ComboBox fx:id="department_four_cb" layoutX="163.0" layoutY="193.0" prefWidth="150.0" />
+                  <ComboBox fx:id="designation_four_cb" layoutX="163.0" layoutY="223.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
         </content>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.SignUpController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.ApplicantprofileController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="207.0">
          <children>
@@ -44,26 +44,26 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="signup_btn" layoutX="131.0" layoutY="364.0" mnemonicParsing="false" text="Cancel" />
+            <Button fx:id="cancel_btn" layoutX="131.0" layoutY="364.0" mnemonicParsing="false" text="Cancel" />
             <TextField fx:id="username_tf" layoutX="138.0" layoutY="85.0" />
-            <TextField fx:id="password_tf" layoutX="138.0" layoutY="116.0" />
-            <TextField fx:id="password_tf1" layoutX="138.0" layoutY="147.0" />
+            <TextField fx:id="email_tf" layoutX="138.0" layoutY="116.0" />
+            <TextField fx:id="contact_tf" layoutX="138.0" layoutY="147.0" />
             <Label layoutX="61.0" layoutY="150.0" text="Contact">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox layoutX="137.0" layoutY="175.0" prefWidth="150.0" />
+            <ComboBox fx:id="designation_cb" layoutX="137.0" layoutY="175.0" onAction="#Select_designation" prefWidth="150.0" />
             <Label layoutX="5.0" layoutY="178.0" text="Applicant Position">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Label layoutX="55.0" layoutY="237.0" text="Description" />
-            <TextArea layoutX="131.0" layoutY="237.0" prefHeight="120.0" prefWidth="250.0" />
-            <Button layoutX="239.0" layoutY="364.0" mnemonicParsing="false" text="Submit" />
+            <TextArea fx:id="description_ta" layoutX="131.0" layoutY="237.0" prefHeight="120.0" prefWidth="250.0" />
+            <Button fx:id="submit_btn" layoutX="239.0" layoutY="364.0" mnemonicParsing="false" text="Submit" />
             <Label layoutX="2.0" layoutY="207.0" text="Designated Department" />
-            <ComboBox layoutX="137.0" layoutY="203.0" prefWidth="150.0" />
+            <ComboBox fx:id="department_cb" layoutX="137.0" layoutY="203.0" onAction="#Select_department" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>

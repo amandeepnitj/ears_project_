@@ -115,6 +115,15 @@ public class SignUpController implements Initializable {
                 DBUtils.changeScene(event, "logged-in.fxml", "Log In", null);
             }
         });
+        
+        //applicant button reflect new window
+        applicant_btn.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+            
+                DBUtils.changeScene(event, "applicantprofile.fxml", "Applicant Profile", null);
+            }
+        });
     }
     
 }

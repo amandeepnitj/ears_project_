@@ -51,7 +51,7 @@ public class LoggedInController implements Initializable {
                         }
                         else
                         {
-                            DBUtils.changeScene(event, "home.fxml", "Home", name);
+                            DBUtils.changeScene(event, "Home.fxml", "Home", name);
                             
                         }
                     } catch (ClassNotFoundException ex) {
@@ -79,6 +79,15 @@ public class LoggedInController implements Initializable {
                 DBUtils.changeScene(event, "sign-up.fxml", "Sign Up", null);
             }
             
+        });
+        
+        //applicant button reflect new window
+        applicant_btn.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+            
+                DBUtils.changeScene(event, "applicantprofile.fxml", "Applicant Profile", null);
+            }
         });
         
         

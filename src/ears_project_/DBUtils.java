@@ -124,4 +124,42 @@ public class DBUtils {
         return false;
     }
     
+    //applicant submission function
+    public static boolean Applicantuser(ActionEvent event, String username,String email,String contact,String description,int designation_id,int department_id) throws ClassNotFoundException, SQLException
+    {
+        
+        {
+            Connection conn = new jdbcconnect().init();
+            String query="select count(*) as count1 from ears.applicant where email= '"+email+"'";
+            Statement st1 = conn.createStatement();
+            ResultSet rs1 =st1.executeQuery(query);
+            boolean useralreadyexists=false;
+            if(rs1.next())
+            {
+                System.out.println("the value of count1 is "+rs1.getInt("count1"));
+                if(rs1.getInt("count1")>=1)
+                {
+                    useralreadyexists=true;
+                    System.out.println(" user already exists  "+useralreadyexists);
+                    return false;
+                    
+                }
+                
+            }
+            //insert data into user table
+            if(useralreadyexists==false)
+            {
+                query="insert into ears.applicant (username,email,contact,designation_id,department_id,description)  values('"+username+"','"+email+"','"+contact+"',"+designation_id+","+department_id+",'"+description+"')";
+                //st1 = conn.createStatement();
+                boolean p=st1.execute(query);
+                System.out.println("insert query == "+p);
+                
+            }
+            conn.close();
+        }
+       
+        return true;
+    
+    }
+    
 }
