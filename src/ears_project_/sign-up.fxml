@@ -72,13 +72,13 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="department_cb" layoutX="137.0" layoutY="175.0" onAction="#Select" prefWidth="150.0" />
+            <ComboBox fx:id="department_cb" layoutX="137.0" layoutY="175.0" onAction="#Select_department" prefWidth="150.0" />
             <Label layoutX="48.0" layoutY="178.0" text="Department">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="designation_cb" layoutX="137.0" layoutY="207.0" prefWidth="150.0" />
+            <ComboBox fx:id="designation_cb" layoutX="137.0" layoutY="207.0" onAction="#Select_designation" prefWidth="150.0" />
             <Label layoutX="53.0" layoutY="211.0" text="Designation" />
          </children>
       </AnchorPane>

@@ -5,6 +5,7 @@
 package ears_project_;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,43 +25,77 @@ import javafx.scene.control.TextField;
  * @author Aman
  */
 public class SignUpController implements Initializable {
+    int designation_id =1;
+    int department_id =1;
 
     @FXML
     private Button signup_btn,login_btn,applicant_btn;
     
     @FXML
-    private TextField username_tf,password_tf;
+    private TextField username_tf,password_tf,contact_tf;
+    @FXML
     private ComboBox<String> designation_cb;
-    private ComboBox department_cb = new ComboBox<String>();
+    @FXML
+    private ComboBox department_cb ;
+    @FXML
+    void Select_department(ActionEvent event)
+    {
+        System.out.println(department_cb.getSelectionModel().getSelectedIndex());
+        department_id =department_cb.getSelectionModel().getSelectedIndex()+1;
+    }
     
     @FXML
-    void Select(ActionEvent event)
+    void Select_designation(ActionEvent event)
     {
-        String s = department_cb.getSelectionModel().getSelectedItem().toString();
-        System.out.println(s);
+        System.out.println(designation_cb.getSelectionModel().getSelectedIndex());
+        designation_id =designation_cb.getSelectionModel().getSelectedIndex()+1;
     }
+    
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //department_cb.getItems().clear();
+        // this is for dpt list
         ObservableList<String> dpt_list =FXCollections.observableArrayList("CSE","ECE","Mechanical","Civil","Chemical","Biotechnology");
         department_cb.setItems(dpt_list);
+        //this is for department list
+        ObservableList<String> dst_list =FXCollections.observableArrayList("Dean","HOD","Senior Lecturer","Associate Professor","PhD Scholar");
+        designation_cb.setItems(dst_list);
         signup_btn.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
             
                 String name=username_tf.getText().trim();
                 String pass = password_tf.getText().trim();
-                System.out.print(name+" and " + pass);
+                String contact = contact_tf.getText().trim();
+                System.out.println(name+" and " + pass +" and contact = "+contact);
+                System.out.println("name is empty == "+name.isEmpty());
                 
-                
-                if(!name.isEmpty()&&!pass.isEmpty())
+                if(name.isEmpty()==false&&pass.isEmpty()==false&&contact.isEmpty()==false)
                 {
                     try {
-                        DBUtils.signUpUser(event, name, pass);
-                    } catch (ClassNotFoundException ex) {
+                        boolean p = DBUtils.signUpUser(event, name, pass,contact,designation_id,department_id);
+                        username_tf.clear();
+                        password_tf.clear();
+                        contact_tf.clear();
+                        if(p==false)
+                        {
+                            Alert alert =new Alert(Alert.AlertType.ERROR);
+                            alert.setContentText("Username is already taken");
+                            alert.show();
+                            
+                        }
+                        else
+                        {
+                            Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setContentText("User profile has been created");
+                            alert.show();
+                            DBUtils.changeScene(event, "logged-in.fxml", "Log In", null);
+                            
+                            
+                        }
+                    } catch (Exception ex) {
                         Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }                 
                 }
                 else
                 {

@@ -5,7 +5,10 @@
 package ears_project_;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,6 +24,7 @@ import javafx.scene.control.TextField;
 public class LoggedInController implements Initializable {
     @FXML
     private Button login_btn,signup_btn,applicant_btn;
+    @FXML
     private TextField username_tf,password_tf;
 
     @Override
@@ -33,11 +37,32 @@ public class LoggedInController implements Initializable {
                 String pass = password_tf.getText().trim();
                 if(name.isEmpty()==false&&pass.isEmpty()==false)
                 {
-                    DBUtils.logInUser(event, name, pass);
+                    try {
+                        boolean p=  DBUtils.logInUser(event, name, pass);
+//                        username_tf.clear();
+//                        password_tf.clear();
+                        if(p==false)
+                        {
+                            Alert alert =new Alert(Alert.AlertType.ERROR);
+                            alert.setContentText("Can't find this credentials in DB");
+                            alert.show();
+                            
+                            
+                        }
+                        else
+                        {
+                            DBUtils.changeScene(event, "home.fxml", "Home", name);
+                            
+                        }
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(LoggedInController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(LoggedInController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 else
                 {
-                    System.out.println("Please fill all the TF");
+                    System.out.println("Please fill all the Fields");
                     Alert alert =new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("Please fill all the info first");
                     alert.show();

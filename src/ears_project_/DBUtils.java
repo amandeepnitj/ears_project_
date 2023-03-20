@@ -52,191 +52,76 @@ public class DBUtils {
         }
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
-        stage.setScene(new Scene(root,600,400));
+        stage.setScene(new Scene(root,800,600));
         stage.show();
         
     }
     
-    public static void signUpUser(ActionEvent event, String username,String password) throws ClassNotFoundException
+    public static boolean signUpUser(ActionEvent event, String username,String password,String contact,int designation_id,int department_id) throws ClassNotFoundException, SQLException
     {
-        Connection connection = null;
-        PreparedStatement  userinsert = null;
-        PreparedStatement checkuserexists = null;
-        ResultSet rs = null;
-        System.out.println("the username and password typed are ");
-        System.out.println(username +"    "+password);
-        boolean useralreadyexists=true;
-        try{
+        
+        {
             Connection conn = new jdbcconnect().init();
-            String query="select count(*) as count1 from ears.user where username= '"+username+"'";
+            String query="select count(*) as count1 from ears.users where username= '"+username+"'";
             Statement st1 = conn.createStatement();
+            ResultSet rs1 =st1.executeQuery(query);
+            boolean useralreadyexists=false;
+            if(rs1.next())
+            {
+                System.out.println("the value of count1 is "+rs1.getInt("count1"));
+                if(rs1.getInt("count1")>=1)
+                {
+                    useralreadyexists=true;
+                    System.out.println(" user already exists  "+useralreadyexists);
+                    return false;
+                    
+                }
+                
+            }
+            //insert data into user table
+            if(useralreadyexists==false)
+            {
+                query="insert into ears.users (username,password,contact,designation_id,department_id)  values('"+username+"','"+password+"','"+contact+"',"+designation_id+","+department_id+")";
+                //st1 = conn.createStatement();
+                boolean p=st1.execute(query);
+                System.out.println("insert query == "+p);
+                
+            }
+            conn.close();
+        }
+       
+        return true;
+    
+    }
+    
+    // log in function
+    
+    public static boolean logInUser(ActionEvent event,String username,String password) throws ClassNotFoundException, SQLException
+    {     
+        Connection con = new jdbcconnect().init();
+        boolean p;
+        
+            String query="select count(*) as count1 from ears.users where username= '"+username+"' and password= '"+password+"'";
+            Statement st1 = con.createStatement();
             ResultSet rs1 =st1.executeQuery(query);
             
             if(rs1.next())
             {
                 if(rs1.getInt("count1")>=1)
                 {
-                    useralreadyexists=false;
-                    System.out.println(" user already exists  "+useralreadyexists);
+                    con.close();
+                    return true;
                 }
-            }
-            rs=checkuserexists.executeQuery();
-            if(rs!=null && rs.isBeforeFirst())
-            {
-                System.out.print("User already exists");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You cannot use this username");
-                alert.show();
-            }
-            else
-            {
-                userinsert = connection.prepareStatement("Insert into users (username,password) VALUES (?,?)");
-                userinsert.setString(1, username);
-                userinsert.setString(2, password);
-                userinsert.executeUpdate();
-                
-                changeScene(event,"logged-in.fxml","Log In",null);
-            }
-            
-        
-        
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-           if(rs!= null)
-           {
-               try{
-                   rs.close();
-               }
-               catch(SQLException e)
-               {
-                   e.printStackTrace();
-               }
-           }
-           
-           if(checkuserexists!= null)
-           {
-               try{
-                   checkuserexists.close();
-               }
-               catch(SQLException e)
-               {
-                   e.printStackTrace();
-               }
-           }
-           if(userinsert!= null)
-           {
-               try{
-                   userinsert.close();
-               }
-               catch(SQLException e)
-               {
-                   e.printStackTrace();
-               }
-           }
-           if(connection!= null)
-           {
-               try{
-                   connection.close();
-               }
-               catch(SQLException e)
-               {
-                   e.printStackTrace();
-               }
-           }
-        }
-    }
-    
-    // log in function
-    
-    public static void logInUser(ActionEvent event,String username,String password)
-    {
-        Connection connection = null;
-        
-        PreparedStatement preparedstatement = null;
-        ResultSet rs=null;
-        
-        
-        try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/EARS","root","Amandeep@17");
-            preparedstatement =connection.prepareStatement("Select password from users where username = ?");
-            preparedstatement.setString(1, username);
-            rs=preparedstatement.executeQuery();
-            if(!rs.isBeforeFirst())
-            {
-                System.out.print("User don't find in DB");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("User don't find in DB");
-                alert.show();
-                
-                
-            }
-            else
-            {
-                while(rs.next())
+                else
                 {
-                    String respassword =rs.getString("password");
-                    if(respassword.equals(password))
-                    {
-                        changeScene(event,"Home.fxml","Home",username);
-                    }
-                    else
-                    {
-                        System.out.print("Password doesnot match");
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Password doesnot match");
-                        alert.show();
-                        
-                    }
+                    System.out.println("we can't find username and password for login validation");
+                    con.close();
+                    return false;
                 }
-                
-//                changeScene(event,"logged-in.fxml","Log In",null);
             }
             
         
-        
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if(rs!= null)
-           {
-               try{
-                   rs.close();
-               }
-               catch(SQLException e)
-               {
-                   e.printStackTrace();
-               }
-           }
-           
-           if(preparedstatement!= null)
-           {
-               try{
-                   preparedstatement.close();
-               }
-               catch(SQLException e)
-               {
-                   e.printStackTrace();
-               }
-           }
-           
-           if(connection!= null)
-           {
-               try{
-                   connection.close();
-               }
-               catch(SQLException e)
-               {
-                   e.printStackTrace();
-               }
-           }
-            
-        }
-        
+        return false;
     }
     
 }
