@@ -33,6 +33,7 @@ public class DBUtils {
                 root= loader.load();
                 HomeController homecontroller = loader.getController();
                 // there is function call for him only
+                homecontroller.storedata(username);
             }
             catch(IOException e)
             {
@@ -161,5 +162,42 @@ public class DBUtils {
         return true;
     
     }
+    
+    
+    
+    
+    //check if user is HOD, Dean or not
+    public static boolean designation_check( String username) throws ClassNotFoundException, SQLException
+    {
+        //return true->if <=2 else false
+        {
+            Connection conn = new jdbcconnect().init();
+            String query="select designation_id as count1  from ears.users where username= '"+username+"'";
+            Statement st1 = conn.createStatement();
+            ResultSet rs1 =st1.executeQuery(query);
+            
+            if(rs1.next())
+            {
+                System.out.println("the value of count1 is "+rs1.getInt("count1"));
+                if(rs1.getInt("count1")<=2)
+                {
+                    return true;
+                    
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            
+            conn.close();
+        }
+       
+        return false;
+    
+    }
+    
+    
     
 }

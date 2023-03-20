@@ -5,7 +5,10 @@
 package ears_project_;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -23,6 +27,7 @@ import javafx.scene.control.TextField;
  * @author Aman
  */
 public class HomeController implements Initializable {
+    private String username;
 
     @FXML
     private Button submit_first_btn,cancel_first_btn,submit_four_btn,logout_four_btn;
@@ -40,9 +45,13 @@ public class HomeController implements Initializable {
     private Tab tab1,tab2,tab3,tab4;
     
     @FXML
+    private Label access_lb;
+    
+    @FXML
     void tabSelected_1()
     {
         System.out.println(1);
+        System.out.println(this.username);
     }
     
     
@@ -64,10 +73,36 @@ public class HomeController implements Initializable {
         System.out.println(4);
     }
     
+    
+    @FXML
+    private VBox committe_member_vbox;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        System.out.println(tabpane_tp.getSelectionModel().getSelectedItem());
-        // TODO
+        
+        System.out.println(this.username);
     }    
+    
+    
+    public void storedata(String username)
+    {
+        this.username=username;
+        
+        try {
+            System.out.println("username is "+ this.username);
+            boolean p =DBUtils.designation_check(this.username);
+            
+            if(p==false)
+            {
+                access_lb.setVisible(true);
+                submit_first_btn.setDisable(true);
+                cancel_first_btn.setDisable(true);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }
