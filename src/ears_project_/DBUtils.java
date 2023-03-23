@@ -4,9 +4,12 @@
  */
 package ears_project_;
 
+import Model.CreateSearchModel;
 import ears_project_.DB.jdbcconnect;
 import java.sql.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -198,6 +201,47 @@ public class DBUtils {
     
     }
     
-    
+    public static List<CreateSearchModel> SearchList(String username) throws ClassNotFoundException, SQLException
+    {
+        int department_id=1;
+        Connection conn = new jdbcconnect().init();
+            String query="select department_id as count1  from ears.users where username= '"+username+"'";
+            Statement st1 = conn.createStatement();
+            ResultSet rs1 =st1.executeQuery(query);
+            
+            if(rs1.next())
+            {
+                System.out.println("the value of department_id is "+rs1.getInt("count1"));
+                 department_id =rs1.getInt("count1");
+                
+            }
+            
+            //getting data of all employees of same department with rank>=2;
+            query="select username,designation_name from ears.users  u left join ears.designation_table d on u.designation_id=d.designation_id where department_id="+department_id+" and u.designation_id>2;";
+            st1 = conn.createStatement();
+            rs1 =st1.executeQuery(query);
+            
+            List<CreateSearchModel> list = new ArrayList();
+            CreateSearchModel csm;
+            int count =1;
+            while(rs1.next())
+            {
+                System.out.println(rs1.getString(1));
+                System.out.println(rs1.getString(2));
+                
+                csm =new CreateSearchModel();
+                csm.setId(Integer.toString(count));
+                csm.setUsername(rs1.getString(1));
+                csm.setDesignation(rs1.getString(2));
+        
+                list.add(csm);
+                count++;
+                
+            }
+            
+        
+        return list;
+        
+    }
     
 }

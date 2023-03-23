@@ -32,8 +32,8 @@
                   <TextField fx:id="committee_first_tf" layoutX="233.0" layoutY="84.0" />
                   <Button fx:id="submit_first_btn" layoutX="147.0" layoutY="496.0" mnemonicParsing="false" text="Submit" />
                   <Button fx:id="cancel_first_btn" layoutX="457.0" layoutY="496.0" mnemonicParsing="false" text="Cancel" />
-                  <ComboBox fx:id="designation_first_cb" layoutX="233.0" layoutY="116.0" prefWidth="150.0" />
-                  <ComboBox fx:id="chairperson_first_cb" layoutX="232.0" layoutY="143.0" prefWidth="150.0" />
+                  <ComboBox fx:id="designation_first_cb" layoutX="233.0" layoutY="116.0" onAction="#select_designation_first" prefWidth="150.0" />
+                  <ComboBox fx:id="chairperson_first_cb" layoutX="232.0" layoutY="143.0" onAction="#select_chairperson_first" prefWidth="150.0" />
                   <Label fx:id="access_lb" layoutX="111.0" layoutY="169.0" prefHeight="32.0" prefWidth="630.0" text="You Don't have Access to create a Search" textAlignment="CENTER" visible="false">
                      <font>
                         <Font size="29.0" />

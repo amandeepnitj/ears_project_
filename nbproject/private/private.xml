@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/sign-up.fxml</file>
-            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/logged-in.fxml</file>
-            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/EARS_project_.java</file>
-            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/LoggedInController.java</file>
-            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/DB/jdbcconnect.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/CreateSearchController.java</file>
             <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/DBUtils.java</file>
-            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/SignUpController.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/HomeController.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/LoggedInController.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/Model/CreateSearchModel.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/Home.fxml</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/createsearch_item.fxml</file>
         </group>
     </open-files>
 </project-private>
