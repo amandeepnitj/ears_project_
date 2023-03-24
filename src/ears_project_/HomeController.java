@@ -5,6 +5,7 @@
 package ears_project_;
 
 import Model.CreateSearchModel;
+import Model.ValidationApplicationModel;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,6 +30,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 
@@ -70,6 +72,34 @@ public class HomeController implements Initializable {
 
     @FXML
     void tabSelected_2() {
+        //populating data of validation applications 
+        List<ValidationApplicationModel> list = new ArrayList<>(ApplicationList());
+
+        
+        for (int i = 0; i < list.size(); i++) {
+            //System.out.println(csm.get(i).getId() + "   " + csm.get(i).getUsername() + "   " + csm.get(i).getDesignation());
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("validationapplication_item.fxml"));
+            
+            try {
+                AnchorPane apane = fxmlLoader.load();
+                ValidationApplicationController vac = fxmlLoader.getController();
+                vac.setData(list.get(i));
+                
+                validation_application_vbox.getChildren().add(apane);
+                
+                vac.addCodeHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                    System.out.println("clicked");
+                    ArrayList<String> feedback_list = vac.getData();
+                    System.out.println(feedback_list.get(0)+"    "+feedback_list.get(1));
+
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        
         System.out.println(2);
     }
 
@@ -82,6 +112,10 @@ public class HomeController implements Initializable {
     void tabSelected_4() {
         System.out.println(4);
     }
+
+    
+    @FXML
+    private VBox validation_application_vbox;
 
     //for chairpeerson CB selection
     @FXML
@@ -216,56 +250,48 @@ public class HomeController implements Initializable {
         }
     }
 
-    private List<CreateSearchModel> SearchList() {
-        List<CreateSearchModel> list = new ArrayList();
-        CreateSearchModel csm = new CreateSearchModel();
-        csm.setId("1");
-        csm.setUsername("Aman");
-        csm.setDesignation("Head of department");
+    private List<ValidationApplicationModel> ApplicationList() {
+        List<ValidationApplicationModel> list = new ArrayList();
+        ValidationApplicationModel vam;
+        vam= new ValidationApplicationModel();
+        vam.setCommittee_name("com 1");
+        vam.setApplicant_name("Jashan");
+        vam.setDesignation_name("PhD Scholar");
+        vam.setApplicant_description("Asi tenu pyar nhi krde, mohhobatt krde aan");
+        list.add(vam);
+        
 
-        list.add(csm);
-
-        csm = new CreateSearchModel();
-        csm.setId("2");
-        csm.setUsername("Prof1");
-        csm.setDesignation("Head of department");
-
-        list.add(csm);
-
-        csm = new CreateSearchModel();
-        csm.setId("3");
-        csm.setUsername("Prof3");
-        csm.setDesignation("Head of department");
-
-        list.add(csm);
-
-        csm = new CreateSearchModel();
-        csm.setId("4");
-        csm.setUsername("Prof4");
-        csm.setDesignation("Head of department");
-
-        list.add(csm);
-
-        csm = new CreateSearchModel();
-        csm.setId("5");
-        csm.setUsername("Prof5");
-        csm.setDesignation("Head of department");
-
-        list.add(csm);
-
-        csm = new CreateSearchModel();
-        csm.setId("6");
-        csm.setUsername("Prof6");
-        csm.setDesignation("Head of department");
-
-        list.add(csm);
-
-        csm = new CreateSearchModel();
-        csm.setId("7");
-        csm.setUsername("Prof7");
-        csm.setDesignation("Head of department");
-
-        list.add(csm);
+        vam= new ValidationApplicationModel();
+        vam.setCommittee_name("com 1");
+        vam.setApplicant_name("Jashan");
+        vam.setDesignation_name("PhD Scholar");
+        vam.setApplicant_description("Asi tenu pyar nhi krde, mohhobatt krde aan");
+        list.add(vam);
+        
+        
+        vam= new ValidationApplicationModel();
+        vam.setCommittee_name("com 1");
+        vam.setApplicant_name("Jashan");
+        vam.setDesignation_name("PhD Scholar");
+        vam.setApplicant_description("Asi tenu pyar nhi krde, mohhobatt krde aan");
+        list.add(vam);
+        
+        
+        
+        vam= new ValidationApplicationModel();
+        vam.setCommittee_name("com 1");
+        vam.setApplicant_name("Jashan");
+        vam.setDesignation_name("PhD Scholar");
+        vam.setApplicant_description("Asi tenu pyar nhi krde, mohhobatt krde aan");
+        list.add(vam);
+        
+        
+        vam= new ValidationApplicationModel();
+        vam.setCommittee_name("com 1");
+        vam.setApplicant_name("Jashan");
+        vam.setDesignation_name("PhD Scholar");
+        vam.setApplicant_description("Asi tenu pyar nhi krde, mohhobatt krde aan");
+        list.add(vam);
 
         return list;
     }
