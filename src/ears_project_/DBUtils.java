@@ -5,6 +5,7 @@
 package ears_project_;
 
 import Model.CreateSearchModel;
+import Model.ValidationApplicationModel;
 import ears_project_.DB.jdbcconnect;
 import java.sql.*;
 import java.io.IOException;
@@ -131,12 +132,30 @@ public class DBUtils {
             }
             //insert data into user table
             if (useralreadyexists == false) {
-                query = "insert into ears.applicant (username,email,contact,designation_id,department_id,description)  values('" + username + "','" + email + "','" + contact + "'," + designation_id + "," + department_id + ",'" + description + "')";
+                //status - pending, selected ,not selected 
+                query = "insert into ears.applicant (username,email,contact,designation_id,department_id,description,status)  values('" + username + "','" + email + "','" + contact + "'," + designation_id + "," + department_id + ",'" + description + "','pending')";
                 //st1 = conn.createStatement();
                 boolean p = st1.execute(query);
                 System.out.println("insert query == " + p);
-
+                   
             }
+            //getting ID of applicant from applicant table to be used to insert data into ears.committee_applicant_transition_table
+            query = "select id from ears.applicant where email= '" + email + "'";
+            //st1 = conn.createStatement();
+            rs1 = st1.executeQuery(query);
+            
+            int applicant_id=1;
+            if(rs1.next()){
+                applicant_id= rs1.getInt(1);
+            }
+            System.out.println("Applicant id === "+applicant_id);
+
+            //insert data in ears.committee_applicant_transition_table if applicant come under any formed committee
+            //department_id,designation_id
+            query ="insert into ears.committee_applicant_transition_table select committee_id,"+applicant_id+" as applicant_id from ears.committee_table where department_id="+department_id+" and designation_id="+designation_id;
+            boolean p = st1.execute(query);
+            System.out.println("insert query for committee_applicant_transition_table== " + p);
+                
             conn.close();
         }
 
@@ -170,7 +189,7 @@ public class DBUtils {
         return false;
 
     }
-
+    //this is for getting all the employees for creating a search
     public static List<CreateSearchModel> SearchList(String username) throws ClassNotFoundException, SQLException {
         int department_id = 1;
         Connection conn = new jdbcconnect().init();
@@ -211,6 +230,7 @@ public class DBUtils {
 
     }
 
+    //this is for saving the create search data into DB
     public static boolean addsearchlistdata(String username, String committee_name, int designation_id, String chairperson, ArrayList<String> search_list) throws ClassNotFoundException, SQLException {
         //to find department id of current user
         Connection conn = new jdbcconnect().init();
@@ -268,8 +288,94 @@ public class DBUtils {
             
             
         }
+        //insert data of commitee and applicants into committee_applicant_transition_table table
+        //department_id
+        //designation_id
+        //committee_id
+            query = "insert into ears.committee_applicant_transition_table select "+committee_id+", id from ears.applicant where designation_id="+designation_id+" and department_id="+department_id+" and status='pending';";
+            p = st1.execute(query);
+            System.out.println("insert query of committee_applicant_transition_table == " + p);
+        
+        
         
         return true;
+    }
+    
+    public static List<ValidationApplicationModel> ApplicationList(String username) throws SQLException, ClassNotFoundException
+    {
+        Connection conn = new jdbcconnect().init();
+        
+
+        //getting data of all applications come under particular employee-username;
+        String query = "select c.title,a.username ,description,d.designation_name,c.committee_id,a.id,c.chairperson_name from ears.committee_applicant_transition_table t inner join ears.applicant a on a.id=t.applicant_id inner join ears.committee_table c on t.committee_id=c.committee_id left join ears.designation_table d on a.designation_id=d.designation_id where t.committee_id in (select committee_id from ears.committee_member_transition_table where username ='"+username+"') ";
+        Statement st1 = conn.createStatement();
+        ResultSet rs1 = st1.executeQuery(query);
+
+        List<ValidationApplicationModel> list = new ArrayList();
+        ValidationApplicationModel vam;
+  
+        while (rs1.next()) {
+            System.out.println(rs1.getString(1));
+            System.out.println(rs1.getString(2));
+            System.out.println(rs1.getString(4));
+            System.out.println(rs1.getString(3));
+            System.out.println(rs1.getString(5));
+            System.out.println(rs1.getString(6));
+            System.out.println(rs1.getString(7));
+            System.out.println("------------------------------------");
+
+            
+        vam= new ValidationApplicationModel();
+        vam.setCommittee_name(rs1.getString(1));
+        vam.setApplicant_name(rs1.getString(2));
+        vam.setDesignation_name(rs1.getString(4));
+        vam.setApplicant_description(rs1.getString(3));
+        vam.setCommittee_id(rs1.getInt(5));
+        vam.setApplicant_id(rs1.getInt(6));
+        vam.setChairperson_name(rs1.getString(7));
+        list.add(vam);
+        }
+
+        conn.close();
+        return list; 
+    }
+    
+    //add applicationlist data of each application -> written in two tables
+    public static void addfeedbackdata(int committee_id,int applicant_id, String chairperson_name,String feedback_code,String feedback_description,String username) throws SQLException, ClassNotFoundException
+    {
+        //to check if there is already data of particular applicant in feedback_table;
+        Connection conn = new jdbcconnect().init();
+        String query = "select count(applicant_id) as count1  from ears.feedback_table where applicant_id= " +applicant_id;
+        Statement st1 = conn.createStatement();
+        ResultSet rs1 = st1.executeQuery(query);
+        boolean needtoaddinfirsttable=true;
+        if (rs1.next()) {
+            if(rs1.getInt("count1")>=1)
+            {
+                //data already there in first table
+                needtoaddinfirsttable=false;
+            }
+        }
+        if(needtoaddinfirsttable==true)
+        {
+            //add data in first table- > feedback_table
+        query = "insert into ears.feedback_table (committee_id,applicant_id,chairperson_name,chairperson_feedback)  values(" + committee_id + "," + applicant_id + ",'" + chairperson_name + "','null')";
+        boolean p = st1.execute(query);
+        System.out.println("insert query of feedback_table == " + p);
+            
+        }
+        //get feedback id from feedback_table of previous added row.
+        query = "select feedback_id  from ears.feedback_table where applicant_id= " +applicant_id;
+        st1 = conn.createStatement();
+        rs1 = st1.executeQuery(query);
+        int feedback_id=1;
+        if (rs1.next()) {
+            feedback_id=rs1.getInt(1);
+        }
+        //add data into second table -> ears.feedback_transition_table
+        query = "insert into ears.feedback_transition_table (feedback_id,username,feedback_code,feedback_description)  values(" + feedback_id + ",'" + username + "','" + feedback_code + "','"+feedback_description+"')";
+        boolean p = st1.execute(query);
+        System.out.println("insert query of feedback_transition_table == " + p);
     }
 
 }

@@ -10,9 +10,35 @@ package Model;
  */
 public class ValidationApplicationModel {
 
-    String committee_name, applicant_name, designation_name, applicant_description,
+    private String committee_name, applicant_name, designation_name, applicant_description,
             feedback, feedback_description;
 
+    private int committee_id,applicant_id;
+    private String chairperson_name;
+
+    public int getCommittee_id() {
+        return committee_id;
+    }
+
+    public void setCommittee_id(int committee_id) {
+        this.committee_id = committee_id;
+    }
+
+    public int getApplicant_id() {
+        return applicant_id;
+    }
+
+    public void setApplicant_id(int applicant_id) {
+        this.applicant_id = applicant_id;
+    }
+
+    public String getChairperson_name() {
+        return chairperson_name;
+    }
+
+    public void setChairperson_name(String chairperson_name) {
+        this.chairperson_name = chairperson_name;
+    }
     public String getCommittee_name() {
         return committee_name;
     }

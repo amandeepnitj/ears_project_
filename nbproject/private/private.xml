@@ -4,12 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/CreateSearchController.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/Model/ValidationApplicationModel.java</file>
             <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/DBUtils.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/ValidationApplicationController.java</file>
             <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/HomeController.java</file>
-            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/LoggedInController.java</file>
             <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/Model/CreateSearchModel.java</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/validationapplication_item.fxml</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/ApplicantprofileController.java</file>
             <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/Home.fxml</file>
             <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/createsearch_item.fxml</file>
+            <file>file:/C:/Users/amandeepsingh12/Documents/NetBeansProjects/ears_project_/src/ears_project_/SignUpController.java</file>
         </group>
     </open-files>
 </project-private>

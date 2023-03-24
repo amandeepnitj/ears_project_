@@ -71,9 +71,14 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void tabSelected_2() {
-        //populating data of validation applications 
-        List<ValidationApplicationModel> list = new ArrayList<>(ApplicationList());
+    void tabSelected_2() throws SQLException, ClassNotFoundException {
+        //clear vbox
+        validation_application_vbox.getChildren().clear();
+        
+        
+        //populating data of validation applications
+        //ApplicationList(username)
+        List<ValidationApplicationModel> list = new ArrayList<>(DBUtils.ApplicationList(username));
 
         
         for (int i = 0; i < list.size(); i++) {
@@ -90,8 +95,17 @@ public class HomeController implements Initializable {
                 
                 vac.addCodeHandler(MouseEvent.MOUSE_CLICKED, e -> {
                     System.out.println("clicked");
+                    
                     ArrayList<String> feedback_list = vac.getData();
                     System.out.println(feedback_list.get(0)+"    "+feedback_list.get(1));
+                    try {
+                        //to store the submission to DB
+                        DBUtils.addfeedbackdata(vac.committee_id, vac.applicant_id, vac.chairperson_name, feedback_list.get(0), feedback_list.get(1), username);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 });
             } catch (IOException ex) {

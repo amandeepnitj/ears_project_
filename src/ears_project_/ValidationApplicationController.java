@@ -27,7 +27,9 @@ import javafx.scene.control.TextField;
  */
 public class ValidationApplicationController implements Initializable {
 
-    private String feedback;
+    public int committee_id,applicant_id;
+    public String chairperson_name;
+    public String feedback;
     @FXML
     private TextField committee_name_second_tf;
 
@@ -61,6 +63,9 @@ public class ValidationApplicationController implements Initializable {
         applicant_name_second_tf.setText(vpm.getApplicant_name());
         designation_name_second_tf.setText(vpm.getDesignation_name());
         applicant_description_second_ta.setText(vpm.getApplicant_description());
+        committee_id=vpm.getCommittee_id();
+        applicant_id = vpm.getApplicant_id();
+        chairperson_name =vpm.getChairperson_name();
 
     }
 
