@@ -4,6 +4,7 @@
  */
 package ears_project_;
 
+import Model.ComputedFeedbackDataModel;
 import Model.CreateSearchModel;
 import Model.ValidationApplicationModel;
 import java.io.IOException;
@@ -18,7 +19,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +28,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -60,7 +61,37 @@ public class HomeController implements Initializable {
 
     @FXML
     private Tab tab1, tab2, tab3, tab4;
+    //third window componenets declared---------------------
+    @FXML
+    private ComboBox<String> candidate_third_cb;
 
+    @FXML
+    private TextField applicant_third_tf;
+
+    @FXML
+    private TextField committee_third_tf;
+
+    @FXML
+    private TextField designation_third_tf;
+
+    @FXML
+    private TextArea applicant_description_third_ta;
+
+    @FXML
+    private VBox resultofmemeber_vbox;
+
+    @FXML
+    private TextField finished_validation_third_tf;
+
+    @FXML
+    private TextField total_validation_third_tf;
+
+    @FXML
+    private ComboBox<?> final_decision_third_cb;
+
+    @FXML
+    private Button submit_third_btn;
+    // ----------------------finished third window---------
     @FXML
     private Label access_lb;
 
@@ -116,11 +147,45 @@ public class HomeController implements Initializable {
         
         System.out.println(2);
     }
-
+    ArrayList<ComputedFeedbackDataModel> cfdm_list=new ArrayList<ComputedFeedbackDataModel>();
     @FXML
-    void tabSelected_3() {
+    void tabSelected_3() throws ClassNotFoundException, SQLException {
         System.out.println(3);
+        cfdm_list.clear();
+        cfdm_list = DBUtils.getComputedFeedbackData(username);
+        ObservableList<String> app_list = FXCollections.observableArrayList();
+        for(int i=0;i<cfdm_list.size();i++)
+        {
+            app_list.add(cfdm_list.get(i).getApplicant_name());
+        }
+        candidate_third_cb.setItems(app_list);
+        
+        
+        
     }
+    
+    @FXML
+    void Select_candidate(ActionEvent event) {
+        
+        String applicant_name= candidate_third_cb.getSelectionModel().getSelectedItem().toString();
+        ComputedFeedbackDataModel cfdm =new ComputedFeedbackDataModel();
+        for(int i=0;i<cfdm_list.size();i++)
+        {
+            if(cfdm_list.get(i).getApplicant_name()==applicant_name)
+            {
+                cfdm=cfdm_list.get(i);
+            }
+        }
+        applicant_third_tf.setText(cfdm.getApplicant_name());
+        committee_third_tf.setText(cfdm.getCommittee_name());
+        designation_third_tf.setText(cfdm.getDesignation_name());
+        finished_validation_third_tf.setText(Integer.toString(cfdm.getValidated_members()));
+        total_validation_third_tf.setText(Integer.toString(cfdm.getTotal_members()));
+        applicant_description_third_ta.setText(cfdm.getApplicant_description());
+        
+
+    }
+    
 
     @FXML
     void tabSelected_4() {

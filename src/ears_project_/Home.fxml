@@ -165,31 +165,90 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="261.0" layoutY="14.0" text="Result of Applications">
+                  <Label layoutX="213.0" layoutY="14.0" text="Final decision of Applications">
                      <font>
                         <Font name="Arial" size="29.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="49.0" layoutY="51.0" prefHeight="506.0" prefWidth="703.0">
-                     <content>
-                        <AnchorPane prefHeight="286.0" prefWidth="684.0" style="-fx-background-color: grey;">
+                  <Label layoutX="14.0" layoutY="83.0" prefHeight="32.0" prefWidth="202.0" text="Choose the application of candidate" />
+                  <ComboBox fx:id="candidate_third_cb" layoutX="250.0" layoutY="87.0" onAction="#Select_candidate" prefHeight="25.0" prefWidth="215.0" />
+                  <AnchorPane layoutX="54.0" layoutY="115.0" prefHeight="446.0" prefWidth="672.0">
+                     <children>
+                        <Label layoutX="22.0" layoutY="14.0" text="Applicant name :" />
+                        <Label layoutX="336.0" layoutY="14.0" text="Committee name :" />
+                        <Label layoutX="20.0" layoutY="50.0" text="Applied Position :" />
+                        <Label layoutX="20.0" layoutY="89.0" prefHeight="17.0" prefWidth="93.0" text="Description :" />
+                        <Label layoutX="22.0" layoutY="353.0" text="Final Decision :" />
+                        <TextField fx:id="applicant_third_tf" layoutX="129.0" layoutY="10.0" />
+                        <TextField fx:id="committee_third_tf" layoutX="451.0" layoutY="10.0" />
+                        <TextField fx:id="designation_third_tf" layoutX="129.0" layoutY="46.0" />
+                        <TextArea fx:id="applicant_description_third_ta" layoutX="129.0" layoutY="81.0" prefHeight="49.0" prefWidth="538.0" />
+                        <HBox layoutX="129.0" layoutY="137.0" prefHeight="198.0" prefWidth="536.0">
                            <children>
-                              <Label layoutX="313.0" layoutY="38.0" text="Committee" textFill="WHITE" />
-                              <Label layoutX="23.0" layoutY="71.0" text="Applied Position" textFill="WHITE" />
-                              <Label layoutX="19.0" layoutY="104.0" text="Feedback Description: " textFill="WHITE" />
-                              <Label layoutX="49.0" layoutY="188.0" text="Selected  :" textFill="WHITE" />
-                              <Label layoutX="19.0" layoutY="38.0" text="Applicant Name : " textFill="WHITE" />
-                              <TextField layoutX="122.0" layoutY="34.0" />
-                              <TextField layoutX="389.0" layoutY="34.0" />
-                              <TextField layoutX="122.0" layoutY="67.0" />
-                              <TextArea layoutX="140.0" layoutY="98.0" prefHeight="81.0" prefWidth="433.0" />
-                              <RadioButton layoutX="122.0" layoutY="188.0" mnemonicParsing="false" text="Yes" textFill="WHITE" />
-                              <RadioButton layoutX="184.0" layoutY="188.0" mnemonicParsing="false" text="No" textFill="WHITE" />
-                              <Button layoutX="112.0" layoutY="231.0" mnemonicParsing="false" text="Submit" />
+                              <ScrollPane prefHeight="194.0" prefWidth="537.0">
+                                 <content>
+                                    <VBox fx:id="resultofmemeber_vbox" prefHeight="200.0" prefWidth="524.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="524.0" style="-fx-border-color: #000000; -fx-border-radius: 5;">
+                                             <children>
+                                                <Label text="Committee Member" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="78.0" text="Decision" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <Label alignment="CENTER" layoutX="117.0" layoutY="10.0" prefHeight="20.0" prefWidth="256.0" text="Full Description" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
                            </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
+                        </HBox>
+                        <Label layoutX="336.0" layoutY="50.0" prefHeight="17.0" prefWidth="145.0" text="Validation Completed by :" />
+                        <TextField fx:id="finished_validation_third_tf" layoutX="481.0" layoutY="46.0" prefHeight="25.0" prefWidth="23.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="515.0" layoutY="47.0" prefHeight="27.0" prefWidth="11.0" text="/">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="total_validation_third_tf" layoutX="533.0" layoutY="46.0" prefHeight="25.0" prefWidth="23.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="final_decision_third_cb" layoutX="135.0" layoutY="349.0" prefWidth="150.0" />
+                        <Button fx:id="submit_third_btn" layoutX="135.0" layoutY="391.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Submit" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
         </content>

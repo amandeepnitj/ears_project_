@@ -4,6 +4,7 @@
  */
 package ears_project_;
 
+import Model.ComputedFeedbackDataModel;
 import Model.CreateSearchModel;
 import Model.ValidationApplicationModel;
 import ears_project_.DB.jdbcconnect;
@@ -265,7 +266,7 @@ public class DBUtils {
         
         
         //add data to committee_table
-        query = "insert into ears.committee_table (title,department_id,chairperson_name,designation_id)  values('" + committee_name + "'," + department_id + ",'" + chairperson + "'," + designation_id + ")";
+        query = "insert into ears.committee_table (title,department_id,chairperson_name,designation_id,total_members)  values('" + committee_name + "'," + department_id + ",'" + chairperson + "'," + designation_id + ","+search_list.size()+")";
         boolean p = st1.execute(query);
         System.out.println("insert query of committee_table == " + p);
         
@@ -376,6 +377,32 @@ public class DBUtils {
         query = "insert into ears.feedback_transition_table (feedback_id,username,feedback_code,feedback_description)  values(" + feedback_id + ",'" + username + "','" + feedback_code + "','"+feedback_description+"')";
         boolean p = st1.execute(query);
         System.out.println("insert query of feedback_transition_table == " + p);
+    }
+    
+    public static ArrayList<ComputedFeedbackDataModel> getComputedFeedbackData(String username) throws ClassNotFoundException, SQLException
+    {
+        
+        Connection conn = new jdbcconnect().init();
+        String query = "select f.feedback_id,a.username,c.title,d.designation_name,c.total_members,temp.validated_member,a.description from ears.feedback_table f left join ears.applicant a on a.id =f.applicant_id left join  ears.committee_table c on f.committee_id=c.committee_id left join ears.designation_table d on a.designation_id= d.designation_id left join (select feedback_id,count(*) as validated_member from ears.feedback_transition_table group by feedback_id) temp on temp.feedback_id=f.feedback_id where f.chairperson_name='"+username+"'";
+        Statement st1 = conn.createStatement();
+        ResultSet rs1 = st1.executeQuery(query);
+        ArrayList<ComputedFeedbackDataModel> list = new ArrayList<ComputedFeedbackDataModel>();
+        ComputedFeedbackDataModel cfdm;
+        while(rs1.next()) {
+            cfdm = new ComputedFeedbackDataModel();
+            cfdm.setFeedback_id(rs1.getInt(1));
+            cfdm.setApplicant_name(rs1.getString(2));
+            cfdm.setCommittee_name(rs1.getString(3));
+            cfdm.setDesignation_name(rs1.getString(4));
+            cfdm.setTotal_members(rs1.getInt(5));
+            cfdm.setValidated_members(rs1.getInt(6));
+            cfdm.setApplicant_description(rs1.getString(7));
+            list.add(cfdm);
+            
+            
+        }
+        conn.close();
+        return list;
     }
 
 }
