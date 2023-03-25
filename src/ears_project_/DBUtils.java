@@ -6,6 +6,7 @@ package ears_project_;
 
 import Model.ComputedFeedbackDataModel;
 import Model.CreateSearchModel;
+import Model.ResultOfMemberModel;
 import Model.ValidationApplicationModel;
 import ears_project_.DB.jdbcconnect;
 import java.sql.*;
@@ -397,6 +398,28 @@ public class DBUtils {
             cfdm.setTotal_members(rs1.getInt(5));
             cfdm.setValidated_members(rs1.getInt(6));
             cfdm.setApplicant_description(rs1.getString(7));
+            list.add(cfdm);
+            
+            
+        }
+        conn.close();
+        return list;
+    }
+    
+    public static ArrayList<ResultOfMemberModel> getFeedbackData(int  feedback_id) throws ClassNotFoundException, SQLException
+    {
+        
+        Connection conn = new jdbcconnect().init();
+        String query = "select username,feedback_code, feedback_description from ears.feedback_transition_table where feedback_id="+feedback_id;
+        Statement st1 = conn.createStatement();
+        ResultSet rs1 = st1.executeQuery(query);
+        ArrayList<ResultOfMemberModel> list = new ArrayList<ResultOfMemberModel>();
+        ResultOfMemberModel cfdm;
+        while(rs1.next()) {
+            cfdm = new ResultOfMemberModel();
+            cfdm.setUsername(rs1.getString(1));
+            cfdm.setFeedback_code(rs1.getString(2));
+            cfdm.setFeedback_description(rs1.getString(3));
             list.add(cfdm);
             
             

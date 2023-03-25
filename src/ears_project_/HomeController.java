@@ -6,6 +6,7 @@ package ears_project_;
 
 import Model.ComputedFeedbackDataModel;
 import Model.CreateSearchModel;
+import Model.ResultOfMemberModel;
 import Model.ValidationApplicationModel;
 import java.io.IOException;
 import java.net.URL;
@@ -151,6 +152,7 @@ public class HomeController implements Initializable {
     @FXML
     void tabSelected_3() throws ClassNotFoundException, SQLException {
         System.out.println(3);
+        candidate_third_cb.getItems().clear();
         cfdm_list.clear();
         cfdm_list = DBUtils.getComputedFeedbackData(username);
         ObservableList<String> app_list = FXCollections.observableArrayList();
@@ -165,8 +167,8 @@ public class HomeController implements Initializable {
     }
     
     @FXML
-    void Select_candidate(ActionEvent event) {
-        
+    void Select_candidate(ActionEvent event) throws ClassNotFoundException, SQLException {
+        resultofmemeber_vbox.getChildren().clear();
         String applicant_name= candidate_third_cb.getSelectionModel().getSelectedItem().toString();
         ComputedFeedbackDataModel cfdm =new ComputedFeedbackDataModel();
         for(int i=0;i<cfdm_list.size();i++)
@@ -182,8 +184,38 @@ public class HomeController implements Initializable {
         finished_validation_third_tf.setText(Integer.toString(cfdm.getValidated_members()));
         total_validation_third_tf.setText(Integer.toString(cfdm.getTotal_members()));
         applicant_description_third_ta.setText(cfdm.getApplicant_description());
-        
+        int feedback_id=cfdm.getFeedback_id();
+        ArrayList<ResultOfMemberModel> list = DBUtils.getFeedbackData(feedback_id);
+        for(int i=0;i<list.size();i++)
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("resultofmember_item.fxml"));
+            try{
+                HBox hbox = fxmlLoader.load();
+                Resultofmember_Controller rmc = fxmlLoader.getController();
+                rmc.setData(list.get(i));
+                resultofmemeber_vbox.getChildren().add(hbox);
+                
+            }
+            catch(Exception e)
+            {e.printStackTrace();}
+        }
 
+    }
+    
+    @FXML
+    void submit_third(ActionEvent event) {
+        if(candidate_third_cb.getSelectionModel().getSelectedItem()==null||final_decision_third_cb.getSelectionModel().getSelectedItem()==null)
+        {
+            //select valid options first.....
+            
+        }
+        else
+        {
+            String applicant_name = candidate_third_cb.getSelectionModel().getSelectedItem().toString();
+            String final_decision = final_decision_third_cb.getSelectionModel().getSelectedItem().toString();
+            
+        }
     }
     
 

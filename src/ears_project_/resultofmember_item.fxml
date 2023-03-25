@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="524.0" style="-fx-border-color: #000000; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="524.0" style="-fx-border-color: #000000; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.Resultofmember_Controller">
    <children>
       <Label fx:id="username_third_lb" text="Committee Member" textAlignment="CENTER">
          <font>
@@ -23,7 +23,7 @@
             <Insets right="10.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="description_third_lb" alignment="CENTER" layoutX="117.0" layoutY="10.0" prefHeight="20.0" prefWidth="256.0" text="Full Description" textAlignment="CENTER">
+      <Label fx:id="description_third_lb" layoutX="117.0" layoutY="10.0" prefHeight="20.0" prefWidth="256.0" text="Full Description" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
