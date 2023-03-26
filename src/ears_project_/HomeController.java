@@ -7,6 +7,7 @@ package ears_project_;
 import Model.ComputedFeedbackDataModel;
 import Model.CreateSearchModel;
 import Model.ResultOfMemberModel;
+import Model.UserProfileModel;
 import Model.ValidationApplicationModel;
 import java.io.IOException;
 import java.net.URL;
@@ -47,6 +48,8 @@ public class HomeController implements Initializable {
     private ArrayList<String> search_list;
 
     @FXML
+    private TextField designation_four_tf,department_four_tf;
+    @FXML
     private Button submit_first_btn, cancel_first_btn, submit_four_btn, logout_four_btn;
 
     @FXML
@@ -55,7 +58,7 @@ public class HomeController implements Initializable {
     private int first_designation = 3;
     private String first_chairperson = "";
     @FXML
-    private ComboBox designation_first_cb, chairperson_first_cb, department_four_cb, designation_four_cb;
+    private ComboBox designation_first_cb, chairperson_first_cb;
 
     @FXML
     private TabPane tabpane_tp;
@@ -88,7 +91,7 @@ public class HomeController implements Initializable {
     private TextField total_validation_third_tf;
 
     @FXML
-    private ComboBox<?> final_decision_third_cb;
+    private ComboBox<String> final_decision_third_cb;
 
     @FXML
     private Button submit_third_btn;
@@ -200,11 +203,15 @@ public class HomeController implements Initializable {
             catch(Exception e)
             {e.printStackTrace();}
         }
+        //for selected or not selected options
+        ObservableList<String> select_list = FXCollections.observableArrayList("Selected", "Not Selected");
+        final_decision_third_cb.setItems(select_list);
+        
 
     }
     
     @FXML
-    void submit_third(ActionEvent event) {
+    void submit_third(ActionEvent event) throws ClassNotFoundException, SQLException {
         if(candidate_third_cb.getSelectionModel().getSelectedItem()==null||final_decision_third_cb.getSelectionModel().getSelectedItem()==null)
         {
             //select valid options first.....
@@ -214,14 +221,51 @@ public class HomeController implements Initializable {
         {
             String applicant_name = candidate_third_cb.getSelectionModel().getSelectedItem().toString();
             String final_decision = final_decision_third_cb.getSelectionModel().getSelectedItem().toString();
+            DBUtils.updatefinalresult(applicant_name, final_decision);
             
         }
     }
     
 
     @FXML
-    void tabSelected_4() {
+    void tabSelected_4() throws ClassNotFoundException, SQLException {
         System.out.println(4);
+        UserProfileModel upm= DBUtils.getuserprofiledata(username);
+        username_four_tf.setText(upm.getUsername());
+        password_four_tf.setText(upm.getPassword());
+        contact_four_tf.setText(upm.getContact());
+        designation_four_tf.setText(upm.getDesignation_name());
+        department_four_tf.setText(upm.getDepartment_name());
+        
+        
+    }
+    
+    
+    @FXML
+    void submit_four_func(ActionEvent event) throws ClassNotFoundException, SQLException {
+        String password = password_four_tf.getText().trim();
+        String contact = contact_four_tf.getText().trim();
+        String us = username_four_tf.getText();
+        if(password.isEmpty()==true||contact.isEmpty()==true)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please add all the information first");
+            alert.show();
+        }
+        else
+        {
+            DBUtils.updateuserprofiledata(password, contact, us);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("user profile data updated sucessfully");
+            alert.show();
+        }
+
+    }
+    
+        @FXML
+    void logout_func(ActionEvent event) {
+        DBUtils.changeScene(event, "logged-in.fxml", "Log In", null);
+
     }
 
     

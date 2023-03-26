@@ -7,6 +7,7 @@ package ears_project_;
 import Model.ComputedFeedbackDataModel;
 import Model.CreateSearchModel;
 import Model.ResultOfMemberModel;
+import Model.UserProfileModel;
 import Model.ValidationApplicationModel;
 import ears_project_.DB.jdbcconnect;
 import java.sql.*;
@@ -426,6 +427,62 @@ public class DBUtils {
         }
         conn.close();
         return list;
+    }
+    
+    public static void updatefinalresult(String applicant_name,String final_decision) throws ClassNotFoundException, SQLException
+    {
+        Connection conn = new jdbcconnect().init();
+        String query = "select id from ears.applicant where username='"+applicant_name+"'";
+        Statement st1 = conn.createStatement();
+        ResultSet rs1 = st1.executeQuery(query);
+        int applicant_id=1;
+        if(rs1.next())
+        {
+            applicant_id=rs1.getInt(1);
+        }
+        
+       
+        query = "update ears.feedback_table set chairperson_feedback='"+final_decision+"' where applicant_id="+applicant_id;
+        st1 = conn.createStatement();
+        st1.executeUpdate(query);
+        
+        
+        conn.close();
+        
+    }
+    public static UserProfileModel getuserprofiledata(String username) throws ClassNotFoundException, SQLException
+    {
+        Connection conn = new jdbcconnect().init();
+        String query = "select username,password,contact,ds.designation_name,dp.department_name from ears.users u left join ears.department_table dp on u.department_id=dp.department_id left join ears.designation_table ds on u.designation_id=ds.designation_id where u.username='"+username+"'";
+        Statement st1 = conn.createStatement();
+        ResultSet rs1 = st1.executeQuery(query);
+        
+        UserProfileModel upm= new UserProfileModel();
+        if(rs1.next()) {
+            
+            upm.setUsername(rs1.getString(1));
+            upm.setPassword(rs1.getString(2));
+            upm.setContact(rs1.getString(3));
+            upm.setDesignation_name(rs1.getString(4));
+            upm.setDepartment_name(rs1.getString(5));
+            
+            
+            
+        }
+        conn.close();
+        return upm;
+    }
+    
+    //update user profile data
+    public static void updateuserprofiledata(String password,String contact,String username) throws ClassNotFoundException, SQLException
+    {
+        Connection conn = new jdbcconnect().init();
+        String query= "update ears.users set password='"+password+"', contact = '"+contact+"' where username='"+username+"'";
+        Statement st1 ;
+        st1 = conn.createStatement();
+        st1.executeUpdate(query);
+        
+        conn.close();
     }
 
 }
