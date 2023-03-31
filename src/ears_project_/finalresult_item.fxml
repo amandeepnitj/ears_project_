@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="665.0" style="-fx-background-radius: 10; -fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.Finalresult_itemController">
+   <children>
+      <Label fx:id="username" prefHeight="21.0" prefWidth="94.0" text="Username" textFill="WHITE">
+         <font>
+            <Font name="Corbel" size="17.0" />
+         </font>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="email" layoutX="10.0" layoutY="23.0" prefHeight="23.0" prefWidth="154.0" text="Email ID" textFill="WHITE">
+         <font>
+            <Font name="Corbel" size="17.0" />
+         </font>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="contact" layoutX="96.0" layoutY="23.0" prefHeight="23.0" prefWidth="109.0" text="Contact" textFill="WHITE">
+         <font>
+            <Font name="Corbel" size="17.0" />
+         </font>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="position" layoutX="166.0" layoutY="23.0" prefHeight="23.0" prefWidth="130.0" text="Applied Position" textFill="WHITE">
+         <font>
+            <Font name="Corbel" size="17.0" />
+         </font>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="status" layoutX="232.0" layoutY="23.0" prefHeight="23.0" prefWidth="140.0" text="Application Status" textFill="WHITE">
+         <font>
+            <Font name="Corbel" size="17.0" />
+         </font>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </Label>
+   </children>
+</HBox>

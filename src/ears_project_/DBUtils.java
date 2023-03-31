@@ -4,6 +4,7 @@
  */
 package ears_project_;
 
+import Model.ApplicantModel;
 import Model.ComputedFeedbackDataModel;
 import Model.CreateSearchModel;
 import Model.ResultOfMemberModel;
@@ -135,7 +136,7 @@ public class DBUtils {
             }
             //insert data into user table
             if (useralreadyexists == false) {
-                //status - pending, selected ,not selected 
+                //status - pending,evaluating, selected ,notselected 
                 query = "insert into ears.applicant (username,email,contact,designation_id,department_id,description,status)  values('" + username + "','" + email + "','" + contact + "'," + designation_id + "," + department_id + ",'" + description + "','pending')";
                 //st1 = conn.createStatement();
                 boolean p = st1.execute(query);
@@ -177,7 +178,7 @@ public class DBUtils {
 
             if (rs1.next()) {
                 System.out.println("the value of count1 is " + rs1.getInt("count1"));
-                if (rs1.getInt("count1") <= 2) {
+                if(rs1.getInt("count1") <= 2) {
                     return true;
 
                 } else {
@@ -264,6 +265,21 @@ public class DBUtils {
 
         }
         
+        //check if committee with same properties (designation and department) exists or not
+        query = "select count(committee_id) as count1  from ears.committee_table where department_id = " + department_id + " and designation_id= "+designation_id;
+        //st1 = conn.createStatement();
+        rs1 = st1.executeQuery(query);
+        
+        if (rs1.next()) {
+            System.out.println("if committee with same designation and department already exists or not " + rs1.getInt("count1"));
+            if(rs1.getInt("count1")>=1)
+            {
+                return false;
+            }
+            
+
+        }
+        
         
         
         
@@ -303,14 +319,14 @@ public class DBUtils {
         
         return true;
     }
-    
+    //getting data for 2nd 
     public static List<ValidationApplicationModel> ApplicationList(String username) throws SQLException, ClassNotFoundException
     {
         Connection conn = new jdbcconnect().init();
         
-
+//select c.title,a.username,description,d.designation_name,c.committee_id,a.id,c.chairperson_name from ears.committee_applicant_transition_table t inner join ears.applicant a on a.id=t.applicant_id inner join ears.committee_table c on t.committee_id=c.committee_id left join ears.designation_table d on a.designation_id=d.designation_id where a.status in('pending','evaluating') and a.id not in (select applicant_id from ears.feedback_table f inner join ears.feedback_transition_table ft on f.feedback_id=ft.feedback_id where ft.username='"+username+"') and t.committee_id in (select committee_id from ears.committee_member_transition_table where username ='"+username+"') and c.chairperson_name not in ('"+username+"')"
         //getting data of all applications come under particular employee-username;
-        String query = "select c.title,a.username ,description,d.designation_name,c.committee_id,a.id,c.chairperson_name from ears.committee_applicant_transition_table t inner join ears.applicant a on a.id=t.applicant_id inner join ears.committee_table c on t.committee_id=c.committee_id left join ears.designation_table d on a.designation_id=d.designation_id where t.committee_id in (select committee_id from ears.committee_member_transition_table where username ='"+username+"') ";
+        String query = "select c.title,a.username,description,d.designation_name,c.committee_id,a.id,c.chairperson_name from ears.committee_applicant_transition_table t inner join ears.applicant a on a.id=t.applicant_id inner join ears.committee_table c on t.committee_id=c.committee_id left join ears.designation_table d on a.designation_id=d.designation_id where a.status in('pending','evaluating') and a.id not in (select applicant_id from ears.feedback_table f inner join ears.feedback_transition_table ft on f.feedback_id=ft.feedback_id where ft.username='"+username+"') and t.committee_id in (select committee_id from ears.committee_member_transition_table where username ='"+username+"') and c.chairperson_name not in ('"+username+"')";
         Statement st1 = conn.createStatement();
         ResultSet rs1 = st1.executeQuery(query);
 
@@ -347,6 +363,7 @@ public class DBUtils {
     public static void addfeedbackdata(int committee_id,int applicant_id, String chairperson_name,String feedback_code,String feedback_description,String username) throws SQLException, ClassNotFoundException
     {
         //to check if there is already data of particular applicant in feedback_table;
+        // that is if another committee member has already insert data first or not
         Connection conn = new jdbcconnect().init();
         String query = "select count(applicant_id) as count1  from ears.feedback_table where applicant_id= " +applicant_id;
         Statement st1 = conn.createStatement();
@@ -379,13 +396,20 @@ public class DBUtils {
         query = "insert into ears.feedback_transition_table (feedback_id,username,feedback_code,feedback_description)  values(" + feedback_id + ",'" + username + "','" + feedback_code + "','"+feedback_description+"')";
         boolean p = st1.execute(query);
         System.out.println("insert query of feedback_transition_table == " + p);
+        
+        //update the applicant table that it's status will be 'evaluating'
+        query = "update ears.applicant set status='evaluating' where id="+applicant_id;
+        st1 = conn.createStatement();
+        st1.executeUpdate(query);
+        
+        
     }
-    
+    //populate data for 3rd tab -- chairperson
     public static ArrayList<ComputedFeedbackDataModel> getComputedFeedbackData(String username) throws ClassNotFoundException, SQLException
     {
         
         Connection conn = new jdbcconnect().init();
-        String query = "select f.feedback_id,a.username,c.title,d.designation_name,c.total_members,temp.validated_member,a.description from ears.feedback_table f left join ears.applicant a on a.id =f.applicant_id left join  ears.committee_table c on f.committee_id=c.committee_id left join ears.designation_table d on a.designation_id= d.designation_id left join (select feedback_id,count(*) as validated_member from ears.feedback_transition_table group by feedback_id) temp on temp.feedback_id=f.feedback_id where f.chairperson_name='"+username+"'";
+        String query = "select f.feedback_id,a.username,c.title,d.designation_name,c.total_members,temp.validated_member,a.description from ears.feedback_table f left join ears.applicant a on a.id =f.applicant_id left join  ears.committee_table c on f.committee_id=c.committee_id left join ears.designation_table d on a.designation_id= d.designation_id left join (select feedback_id,count(*) as validated_member from ears.feedback_transition_table group by feedback_id) temp on temp.feedback_id=f.feedback_id where f.chairperson_name='"+username+"' and f.chairperson_feedback='null'";
         Statement st1 = conn.createStatement();
         ResultSet rs1 = st1.executeQuery(query);
         ArrayList<ComputedFeedbackDataModel> list = new ArrayList<ComputedFeedbackDataModel>();
@@ -445,7 +469,11 @@ public class DBUtils {
         query = "update ears.feedback_table set chairperson_feedback='"+final_decision+"' where applicant_id="+applicant_id;
         st1 = conn.createStatement();
         st1.executeUpdate(query);
-        
+
+        //update applicant's data in applicant table too.
+        query = "update ears.applicant set status='"+final_decision+"' where id="+applicant_id;
+        st1 = conn.createStatement();
+        st1.executeUpdate(query);
         
         conn.close();
         
@@ -483,6 +511,37 @@ public class DBUtils {
         st1.executeUpdate(query);
         
         conn.close();
+    }
+    // getting final applicants data for dean and HOD
+    public static ArrayList<ApplicantModel> getfinalapplicationdata(String username) throws ClassNotFoundException, SQLException
+    {
+        Connection conn = new jdbcconnect().init();
+        //get department id of user
+        String query = "select department_id from ears.users  where username='"+username+"'";
+        Statement st1 = conn.createStatement();
+        ResultSet rs1 = st1.executeQuery(query);
+        int department_id =1;
+        if(rs1.next()) {
+            department_id=rs1.getInt("department_id");
+        }
+        
+        query = "select username,email,contact,d.designation_name,status from ears.applicant u left join ears.designation_table d on u.designation_id=d.designation_id where department_id="+department_id;
+        rs1 = st1.executeQuery(query);
+        ArrayList<ApplicantModel> list = new ArrayList<ApplicantModel>();
+        ApplicantModel cfdm;
+        while(rs1.next()) {
+            cfdm = new ApplicantModel();
+            cfdm.setUsername(rs1.getString(1));
+            cfdm.setEmail(rs1.getString(2));
+            cfdm.setContact(rs1.getString(3));
+            cfdm.setPosition(rs1.getString(4));
+            cfdm.setStatus(rs1.getString(5));
+            list.add(cfdm);
+        }
+        
+        conn.close();
+        
+        return list;
     }
 
 }

@@ -13,8 +13,14 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -34,6 +40,9 @@ public class CreateSearchController implements Initializable{
     @FXML
     public Button select_btn;
     
+    @FXML
+    private HBox createsearch_hbox;
+    
     
     public void setData(CreateSearchModel csm)
     {
@@ -42,17 +51,10 @@ public class CreateSearchController implements Initializable{
         id_lb.setText(csm.getId());
         designation_lb.setText(csm.getDesignation());
     }
-    public void btn_lis()
+    public void hbox_selected()
     {
-//        select_btn.setOnAction(new EventHandler<ActionEvent>(){
-//            @Override
-//            public void handle(ActionEvent event) {
-//                System.out.println(username_lb.getText());
-//                select_btn.setVisible(false);
-//                
-//            }
-        
-//        });
+        createsearch_hbox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY,CornerRadii.EMPTY,Insets.EMPTY)));
+        select_btn.setDisable(true);
     }
     public <E extends Event> void addCodeHandler(EventType<E> eventType, EventHandler<E> handler) {
        select_btn.addEventHandler(eventType, handler);

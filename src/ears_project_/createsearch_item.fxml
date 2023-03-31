@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="675.0" spacing="5.0" style="-fx-border-color: #000000; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.CreateSearchController">
+<HBox fx:id="createsearch_hbox" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="675.0" spacing="5.0" style="-fx-border-color: #000000; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.CreateSearchController">
    <children>
       <Label fx:id="id_lb" alignment="CENTER" prefWidth="50.0" text="1" textAlignment="CENTER" textFill="#575757">
          <font>

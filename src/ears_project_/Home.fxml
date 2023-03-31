@@ -55,44 +55,11 @@
                         <Font name="Corbel Italic" size="35.0" />
                      </font>
                   </Label>
-                  <HBox fx:id="dynamic_first_hbox" layoutX="80.0" layoutY="198.0" prefHeight="284.0" prefWidth="676.0">
+                  <HBox fx:id="dynamic_first_hbox" layoutX="80.0" layoutY="218.0" prefHeight="264.0" prefWidth="676.0">
                      <children>
-                        <ScrollPane prefHeight="252.0" prefWidth="675.0" style="-fx-background-color: beige;">
+                        <ScrollPane prefHeight="238.0" prefWidth="675.0" style="-fx-background-color: beige;">
                            <content>
-                              <VBox fx:id="committe_member_vbox" prefHeight="225.0" prefWidth="675.0" style="-fx-background-color: beige;">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="677.0">
-                                       <children>
-                                          <Label alignment="CENTER" prefWidth="50.0" style="-fx-background-color: brown;" text="Index" textAlignment="CENTER" textFill="#f8a20e">
-                                             <font>
-                                                <Font name="Corbel Bold" size="20.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label alignment="CENTER" layoutX="10.0" layoutY="26.0" prefHeight="23.0" prefWidth="226.0" style="-fx-background-color: brown;" text="Employee Name" textAlignment="CENTER" textFill="#f8a20e">
-                                             <font>
-                                                <Font name="Corbel Bold" size="20.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label alignment="CENTER" layoutX="60.0" layoutY="26.0" prefHeight="23.0" prefWidth="218.0" style="-fx-background-color: Brown;" text="Designation " textAlignment="CENTER" textFill="#f8a20e">
-                                             <font>
-                                                <Font name="Corbel Bold" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" layoutX="233.0" layoutY="26.0" prefHeight="23.0" prefWidth="173.0" style="-fx-background-color: Brown;" text="Action" textAlignment="CENTER" textFill="#f8a20e">
-                                             <font>
-                                                <Font name="Corbel Bold" size="20.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
+                              <VBox fx:id="committe_member_vbox" prefHeight="260.0" prefWidth="675.0" style="-fx-background-color: beige;" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -102,6 +69,36 @@
                         <Font name="Corbel Bold Italic" size="14.0" />
                      </font>
                   </Label>
+                  <HBox fx:id="createsearchheading_hbox" alignment="CENTER_LEFT" layoutX="67.0" layoutY="183.0" prefHeight="43.0" prefWidth="677.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="50.0" style="-fx-background-color: brown;" text="Index" textAlignment="CENTER" textFill="#f8a20e">
+                           <font>
+                              <Font name="Corbel Bold" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="26.0" prefHeight="23.0" prefWidth="226.0" style="-fx-background-color: brown;" text="Employee Name" textAlignment="CENTER" textFill="#f8a20e">
+                           <font>
+                              <Font name="Corbel Bold" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="60.0" layoutY="26.0" prefHeight="23.0" prefWidth="218.0" style="-fx-background-color: Brown;" text="Designation " textAlignment="CENTER" textFill="#f8a20e">
+                           <font>
+                              <Font name="Corbel Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="233.0" layoutY="26.0" prefHeight="23.0" prefWidth="173.0" style="-fx-background-color: Brown;" text="Action" textAlignment="CENTER" textFill="#f8a20e">
+                           <font>
+                              <Font name="Corbel Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -181,7 +178,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab fx:id="tab3" onSelectionChanged="#tabSelected_3" text="Results">
+      <Tab fx:id="tab3" onSelectionChanged="#tabSelected_3" text="Chairperson Feedback">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: yellow;">
                <children>
@@ -305,22 +302,17 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="61.0" layoutY="150.0" text="Contact" textFill="#a72d2d">
+                  <Label layoutX="69.0" layoutY="161.0" text="Contact" textFill="#a72d2d">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="63.0" layoutY="186.0" text="Department" textFill="#a72d2d">
+                  <Label layoutX="63.0" layoutY="209.0" text="Department" textFill="#a72d2d">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="62.0" layoutY="225.0" text="Designation" textFill="#a72d2d">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="62.0" layoutY="264.0" text="Committees" textFill="#a72d2d">
+                  <Label layoutX="63.0" layoutY="286.0" text="Designation" textFill="#a72d2d">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -330,58 +322,90 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="username_four_tf" editable="false" layoutX="163.0" layoutY="77.0" />
-                  <TextField fx:id="contact_four_tf" layoutX="163.0" layoutY="147.0" />
-                  <ScrollPane layoutX="163.0" layoutY="264.0" prefHeight="200.0" prefWidth="602.0" style="-fx-background-color: beige;">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="602.0" style="-fx-background-color: brown;">
-                           <children>
-                              <Label layoutX="7.0" layoutY="17.0" text="Committee" textFill="#f89306">
-                                 <font>
-                                    <Font name="Arial" size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="77.0" layoutY="13.0" prefHeight="25.0" prefWidth="98.0" />
-                              <Label layoutX="188.0" layoutY="17.0" text="Designation" textFill="#f89306">
-                                 <font>
-                                    <Font name="Arial" size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="258.0" layoutY="13.0" prefHeight="25.0" prefWidth="112.0" />
-                              <Label layoutX="388.0" layoutY="17.0" text="Applied Applicants" textFill="#f89306">
-                                 <font>
-                                    <Font name="Arial" size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="512.0" layoutY="13.0" prefHeight="25.0" prefWidth="76.0" />
-                              <Label layoutX="14.0" layoutY="52.0" text="Selected Applicants" textFill="#f89306">
-                                 <font>
-                                    <Font name="Arial" size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="138.0" layoutY="48.0" prefHeight="25.0" prefWidth="44.0" />
-                              <Label layoutX="200.0" layoutY="52.0" text="Pending Applicants" textFill="#f89306">
-                                 <font>
-                                    <Font name="Arial" size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="324.0" layoutY="48.0" prefHeight="25.0" prefWidth="44.0" />
-                              <Button layoutX="411.0" layoutY="48.0" mnemonicParsing="false" text="Remove Committee" textFill="#f89306" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
-                  <Button fx:id="submit_four_btn" layoutX="163.0" layoutY="489.0" mnemonicParsing="false" onAction="#submit_four_func" text="Submit" textFill="#9e3737">
+                  <TextField fx:id="username_four_tf" editable="false" layoutX="182.0" layoutY="78.0" />
+                  <TextField fx:id="contact_four_tf" layoutX="182.0" layoutY="158.0" />
+                  <Button fx:id="submit_four_btn" layoutX="163.0" layoutY="358.0" mnemonicParsing="false" onAction="#submit_four_func" text="Submit" textFill="#9e3737">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <Button fx:id="logout_four_btn" layoutX="505.0" layoutY="489.0" mnemonicParsing="false" onAction="#logout_func" text="Logout" textFill="#9e3939">
+                  <Button fx:id="logout_four_btn" layoutX="494.0" layoutY="358.0" mnemonicParsing="false" onAction="#logout_func" text="Logout" textFill="#9e3939">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <TextField fx:id="department_four_tf" editable="false" layoutX="163.0" layoutY="183.0" />
-                  <TextField fx:id="designation_four_tf" editable="false" layoutX="163.0" layoutY="223.0" />
-                  <PasswordField fx:id="password_four_tf" layoutX="163.0" layoutY="116.0" />
+                  <TextField fx:id="department_four_tf" editable="false" layoutX="182.0" layoutY="206.0" />
+                  <TextField fx:id="designation_four_tf" editable="false" layoutX="182.0" layoutY="284.0" />
+                  <PasswordField fx:id="password_four_tf" layoutX="182.0" layoutY="116.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab onSelectionChanged="#tabSelected_5" text="Final Results">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: yellow;">
+               <children>
+                  <Label layoutX="296.0" layoutY="30.0" text="Final Results" textFill="RED">
+                     <font>
+                        <Font name="Arial Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="217.0" layoutY="63.0" prefHeight="32.0" prefWidth="339.0" text="Only Accessed by Dean and HOD of the department" textFill="#a72d2d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="82.0" layoutY="157.0" prefHeight="365.0" prefWidth="669.0">
+                     <children>
+                        <ScrollPane prefHeight="394.0" prefWidth="669.0">
+                           <content>
+                              <VBox fx:id="finalresult_vbox" prefHeight="390.0" prefWidth="665.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="84.0" layoutY="102.0" prefHeight="48.0" prefWidth="665.0" style="-fx-background-radius: 30; -fx-background-color: grey;">
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="94.0" text="Username" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="23.0" prefHeight="23.0" prefWidth="154.0" text="Email ID" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="96.0" layoutY="23.0" prefHeight="23.0" prefWidth="109.0" text="Contact" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="166.0" layoutY="23.0" prefHeight="23.0" prefWidth="130.0" text="Applied Position" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="232.0" layoutY="23.0" prefHeight="23.0" prefWidth="140.0" text="Application Status" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
         </content>

@@ -11,68 +11,71 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.ApplicantprofileController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ears_project_.ApplicantprofileController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="227.0" style="-fx-background-color: beige;">
+      <AnchorPane prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: beige;">
          <children>
-            <Label layoutX="19.0" layoutY="173.0" text="EARS PROJECT" textFill="#1d00ff">
+            <Label layoutX="65.0" layoutY="227.0" text="EARS PROJECT" textFill="#1d00ff">
                <font>
-                  <Font name="Arial Bold" size="24.0" />
+                  <Font name="Corbel" size="34.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="393.0" style="-fx-background-color: yellow;">
+      <AnchorPane prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: yellow;">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="63.0" layoutX="33.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="52.0" fitWidth="63.0" layoutX="48.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../lib/user%20icon.png" />
                </image>
             </ImageView>
-            <Label layoutX="107.0" layoutY="40.0" prefHeight="35.0" prefWidth="235.0" text="APPLICANT PROFILE" textAlignment="CENTER" textFill="#ff3903">
+            <Label layoutX="152.0" layoutY="41.0" prefHeight="35.0" prefWidth="235.0" text="APPLICANT PROFILE" textAlignment="CENTER" textFill="#ff3903">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="Corbel" size="25.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="112.0" text="Name" textFill="#823030">
+            <Label layoutX="33.0" layoutY="124.0" prefHeight="20.0" prefWidth="112.0" text="Name" textFill="#823030">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="143.0" prefHeight="13.0" prefWidth="51.0" text="Email ID" textFill="#823030">
+            <Label layoutX="34.0" layoutY="164.0" prefHeight="20.0" prefWidth="132.0" text="Email ID" textFill="#823030">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="cancel_btn" layoutX="318.0" layoutY="358.0" mnemonicParsing="false" text="Cancel" textFill="#823030" />
-            <TextField fx:id="username_tf" layoutX="195.0" layoutY="109.0" />
-            <TextField fx:id="email_tf" layoutX="195.0" layoutY="140.0" />
-            <TextField fx:id="contact_tf" layoutX="195.0" layoutY="171.0" />
-            <Label layoutX="31.0" layoutY="174.0" text="Contact Number" textFill="#823030">
+            <Button fx:id="cancel_btn" layoutX="355.0" layoutY="497.0" mnemonicParsing="false" text="Cancel" textFill="#823030">
                <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="designation_cb" layoutX="194.0" layoutY="205.0" onAction="#Select_designation" prefWidth="150.0" />
-            <Label layoutX="31.0" layoutY="208.0" text="Applicant Position" textFill="#823030">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="34.0" layoutY="273.0" prefHeight="20.0" prefWidth="71.0" text="Description" textFill="#823030">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <TextArea fx:id="description_ta" layoutX="194.0" layoutY="273.0" prefHeight="80.0" prefWidth="176.0" />
-            <Button fx:id="submit_btn" layoutX="197.0" layoutY="358.0" mnemonicParsing="false" text="Submit" textFill="#823030">
-               <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Corbel" size="15.0" />
                </font></Button>
-            <Label layoutX="31.0" layoutY="243.0" text="Designated Department" textFill="#823030">
+            <TextField fx:id="username_tf" layoutX="195.0" layoutY="122.0" />
+            <TextField fx:id="email_tf" layoutX="195.0" layoutY="162.0" />
+            <TextField fx:id="contact_tf" layoutX="195.0" layoutY="194.0" />
+            <Label layoutX="33.0" layoutY="197.0" text="Contact Number" textFill="#823030">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="designation_cb" layoutX="194.0" layoutY="237.0" onAction="#Select_designation" prefWidth="150.0" />
+            <Label layoutX="29.0" layoutY="240.0" text="Applicant Position" textFill="#823030">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="347.0" prefHeight="20.0" prefWidth="71.0" text="Description" textFill="#823030">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <ComboBox fx:id="department_cb" layoutX="194.0" layoutY="240.0" onAction="#Select_department" prefWidth="150.0" />
+            <TextArea fx:id="description_ta" layoutX="187.0" layoutY="347.0" prefHeight="101.0" prefWidth="245.0" />
+            <Button fx:id="submit_btn" layoutX="187.0" layoutY="497.0" mnemonicParsing="false" text="Submit" textFill="#823030">
+               <font>
+                  <Font name="Corbel" size="15.0" />
+               </font></Button>
+            <Label layoutX="30.0" layoutY="290.0" text="Designated Department" textFill="#823030">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <ComboBox fx:id="department_cb" layoutX="194.0" layoutY="288.0" onAction="#Select_department" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>
