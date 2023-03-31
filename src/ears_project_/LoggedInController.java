@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,7 +26,9 @@ public class LoggedInController implements Initializable {
     @FXML
     private Button login_btn,signup_btn,applicant_btn;
     @FXML
-    private TextField username_tf,password_tf;
+    private TextField username_tf;
+    @FXML 
+    private PasswordField password_tf;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

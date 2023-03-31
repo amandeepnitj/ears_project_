@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,6 +81,14 @@ public class ApplicantprofileController implements Initializable {
                 String contact = contact_tf.getText().trim();
                 String description = description_ta.getText().trim();
                 
+                if(!checkemail(email_tf.getText().trim()))
+                {
+                    Alert alert =new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Email is invalid, Please use valid email Address");
+                    alert.show();
+                    return;
+                }
+                
                 if(name.isEmpty()==false&&email.isEmpty()==false&&contact.isEmpty()==false)
                 {
                     try {
@@ -129,6 +139,15 @@ public class ApplicantprofileController implements Initializable {
         });
         
         
-       }    
-    
+    }
+
+    boolean checkemail(String email)
+    {
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex); 
+        Matcher matcher = pattern.matcher(email);  
+        System.out.println(email +" : "+ matcher.matches()+"\n"); 
+        return matcher.matches();
+
+    }
 }

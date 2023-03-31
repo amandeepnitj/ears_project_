@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
@@ -50,10 +53,15 @@ public class HomeController implements Initializable {
     @FXML
     private TextField designation_four_tf,department_four_tf;
     @FXML
+    private HBox dynamic_first_hbox;
+    @FXML
     private Button submit_first_btn, cancel_first_btn, submit_four_btn, logout_four_btn;
 
     @FXML
-    private TextField committee_first_tf, username_four_tf, password_four_tf, contact_four_tf;
+    private TextField committee_first_tf, username_four_tf, contact_four_tf;
+    
+    @FXML
+    private PasswordField  password_four_tf;
 
     private int first_designation = 3;
     private String first_chairperson = "";
@@ -246,6 +254,9 @@ public class HomeController implements Initializable {
         String password = password_four_tf.getText().trim();
         String contact = contact_four_tf.getText().trim();
         String us = username_four_tf.getText();
+        
+        
+        
         if(password.isEmpty()==true||contact.isEmpty()==true)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -262,7 +273,8 @@ public class HomeController implements Initializable {
 
     }
     
-        @FXML
+    
+    @FXML
     void logout_func(ActionEvent event) {
         DBUtils.changeScene(event, "logged-in.fxml", "Log In", null);
 
@@ -397,6 +409,15 @@ public class HomeController implements Initializable {
                 access_lb.setVisible(true);
                 submit_first_btn.setDisable(true);
                 cancel_first_btn.setDisable(true);
+                dynamic_first_hbox.setVisible(false);
+            }
+            else
+            {
+                access_lb.setVisible(false);
+                submit_first_btn.setDisable(false);
+                cancel_first_btn.setDisable(false);
+                dynamic_first_hbox.setVisible(true);
+                
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);

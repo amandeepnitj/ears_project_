@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 /**
@@ -32,7 +35,9 @@ public class SignUpController implements Initializable {
     private Button signup_btn,login_btn,applicant_btn;
     
     @FXML
-    private TextField username_tf,password_tf,contact_tf;
+    private TextField username_tf,contact_tf;
+    @FXML
+    private PasswordField password_tf;
     @FXML
     private ComboBox<String> designation_cb;
     @FXML
@@ -125,5 +130,7 @@ public class SignUpController implements Initializable {
             }
         });
     }
+    
+     
     
 }
