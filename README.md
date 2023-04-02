@@ -14,10 +14,10 @@ According to the position of the employee, each employee has different roles,acc
 2. to run the project, machine would have JAVA >15v installed and MySQL server installed.
 3. As of now, we have hard-coded the MySQL connection credentials, which will be as following:
 
-         Address: localhost:3600
+         Address: localhost:3306
          username : root
          password: Amandeep@17
-         port number : 3600
+         port number : 3306
 
 
 To RUN THE PROJECT, run "ears_project_.java" File 
